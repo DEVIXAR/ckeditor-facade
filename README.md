@@ -2,18 +2,17 @@
 
 ## Overview
 
-Плагін для Ckeditor який спрощує роботу з API елементів завдяки доступу 
-через власну обгортку. 
+Ckeditor plugin simplifies work with API using access through itself wrapper.
 
-Для роботи з елементами Ckeditor зовсім не потрібно мати доступ до 
-первинної ініціалізації форми як:
+You don't need any access to primary initialization form to work with Ckeditor
+elements. Just use:
 
 ``` javascript
     CKEDITOR.replace( 'editor1' );
 ```
 
-Просто впевніться, що Ckeditor готовий для роботи. Наприклад використовуючи
-стандартний слухач подіїї:
+Make sure Ckeditor is ready to work with. For example use default event
+listener:
 
 ``` javascript
     CKEDITOR.on('instanceReady', function () {
@@ -21,19 +20,19 @@
     });
 ```
 
-Та отримайте доступ через CkFacade:
+To get access use CkFacade:
 
 ``` javascript
-    // Для добавлення та управління власними елементами
+    // Add and manage own elements
     CkFacade.options = { ... }
-    
-    // Для управління вже існуючими власними чи іншими елементами
+
+    // Manage own added or other elements
     CkFacade.helper.getElement(...).setValue(...).[...]...
 ```
 
-## Добавлення власних елементів в Dialog
+## Add own elements to Dialog
 
-Для добавлення власних елементів в діалог використовується:
+To add own elements to Dialog use:
 
 ``` javascript
     CkFacade.options = {
@@ -44,7 +43,7 @@
 ```
 
 
-#### Добавляємо кнопку в діалог Image
+#### Add button to `Image` dialog
 
 ``` javascript
     CkFacade.options = {
@@ -52,7 +51,7 @@
                 image: {
                     ui: [{
                             type: 'button', // задаємо тип елемента
-                            id: 'someId', // ідентифікатор елемента для доступу через DOM 
+                            id: 'someId', // ідентифікатор елемента для доступу через DOM
                             label: { // значення елементу. є можливість добавлення для різних мов
                                 en: 'My custom button',
                                 uk: 'Моя власна кнопка'
@@ -67,7 +66,7 @@
                             onClick: function (e) {
                                 // клік по доданій кнопці
                             }
-                            
+
                             // можна використовувати і всі стандартні поля та події Ckeditor
                         },
                     ]
@@ -78,7 +77,7 @@
 ```
 
 
-#### Добавляємо вкладку з елементами в діалог Link
+#### Add tab with elements to `Link` dialog
 
 ``` javascript
     CkFacade.options = {
@@ -117,10 +116,10 @@
                                         }
                                     ]
                                 }
-        
+
                             ]
                         }
-        
+
                     ]
                 }]
             }
@@ -128,9 +127,9 @@
     };
 ```
 
-#### Виконання власного коду
+#### Execute own code
 
-Звичайно ж є можливість виконувати власний код в під час бодування діалогів
+You can execute own code during dialog building
 
 ``` javascript
     CkFacade.options = {
@@ -140,12 +139,11 @@
     }
 ```
 
-## Маніпуляція елементами
+## Element manipulations
 
-Після добавлення власних елементів, вони отримують поле `helper` яке надає
-можливість маніпулювати елментами.
+Own created elements get `helper` field. Use it to manipulate them.
 
-Для прикладу добавлення зображення в діалозі `Image`
+For example adding image to `Image` dialog
 
 ``` javascript
     CkFacade.options = {
@@ -155,14 +153,14 @@
                                 type: 'button',
                                 ...
                                 onClick: function (e) {
-                                    
+
                                     var helper = this.helper; // отримуємо доступ до `helper`
-                                    
+
                                     // getElement ( iD, tab ) - пошук елемента
                                     helper
                                         .getElement('txtUrl', 'info')
                                         .setValue('http://.../../my-image.jpg');
-                                        
+
                                     // по кліку на кнопку добавляємо ссилку на забраження.
                                     // зауважте те, що при зміні значення методом `setValue`
                                     // елемент автоматично виконує тригер зміни.
@@ -176,20 +174,21 @@
         }
 ```
 
-Також доступ можна отримати з іншого джерела через `CkFacade`
+You can also use `CkFacade` to get access:
 
 ``` javascript
     CkFacade.helper
         .getElement('txtUrl', 'info')
         .setValue('http://.../../my-image.jpg');
-        
-    // береться поточний діалог
-    // у випадку якщо діалог не відкритий `NoDialogException`
+
+
+    // if dialog is not open `NoDialogException`
+    // it takes current dialog
 ```
 
-Що б дізнатися ідентифікатор елемента можна скористатися [devtools](http://ckeditor.com/addon/devtools)
+To get element ID you can use [devtools](http://ckeditor.com/addon/devtools)
 
-# Методи
+# Mehtods
 
 | Function   |      Param Type      |  Return Type |  Description |
 |----------|:-------------:|------:|------:|
