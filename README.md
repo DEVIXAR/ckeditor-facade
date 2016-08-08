@@ -174,6 +174,8 @@ For example adding image to `Image` dialog
         }
 ```
 
+![How add image](https://devixar.com/media/Ckeditor-facade.gif)
+
 You can also use `CkFacade` to get access:
 
 ``` javascript
@@ -188,7 +190,7 @@ You can also use `CkFacade` to get access:
 
 To get element ID you can use [devtools](http://ckeditor.com/addon/devtools)
 
-# Mehtods
+# Methods
 
 | Function   |      Param Type      |  Return Type |  Description |
 |----------|:-------------:|------:|------:|
