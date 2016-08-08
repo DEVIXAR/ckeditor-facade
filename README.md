@@ -5,7 +5,7 @@
 Ckeditor plugin simplifies work with API using access through itself wrapper.
 
 You don't need any access to primary initialization form to work with Ckeditor
-elements. Just use:
+elements:
 
 ``` javascript
     CKEDITOR.replace( 'editor1' );
@@ -37,7 +37,7 @@ To add own elements to Dialog use:
 ``` javascript
     CkFacade.options = {
         dialog: [
-            // Список елементів
+            // Elements list
         ]
     }
 ```
@@ -50,24 +50,24 @@ To add own elements to Dialog use:
         dialog: [{
                 image: {
                     ui: [{
-                            type: 'button', // задаємо тип елемента
-                            id: 'someId', // ідентифікатор елемента для доступу через DOM
-                            label: { // значення елементу. є можливість добавлення для різних мов
+                            type: 'button', // set element type
+                            id: 'someId', // element ID to get access through DOM
+                            label: { // element value. Supports multi language
                                 en: 'My custom button',
                                 uk: 'Моя власна кнопка'
                             },
-                            title: { // підказка при наведення. теж підтримує мультимову
-                                en: 'My button. User it for control some event',
+                            title: { // hint for button. Supports multi language
+                                en: 'My button. Use it for control some event',
                                 uk: 'Моя кнопка. Використовуйте її для контролю якої-небудь події'
                             },
                             onShow: function (e) {
-                                // як тільки елемент успішно загружений
+                                // after element successful loaded
                             },
                             onClick: function (e) {
-                                // клік по доданій кнопці
+                                // when button clicked
                             }
 
-                            // можна використовувати і всі стандартні поля та події Ckeditor
+                            // default and Ckeditor events also can be used
                         },
                     ]
                 }
@@ -89,7 +89,7 @@ To add own elements to Dialog use:
                         en: 'My custom tab',
                         uk: 'Моя вкладка'
                     },
-                    elements: [ // задаємо список нових елементів
+                    elements: [ // set list of new elements
                         {
                             type: 'button',
                             label: {
@@ -98,7 +98,7 @@ To add own elements to Dialog use:
                             },
                         },
                         {
-                            type: 'hbox', // добавляємо групування для елементів
+                            type: 'hbox', // add elements grouping
                             widths: ['25%', '100%'],
                             children: [
                                 {
@@ -109,7 +109,7 @@ To add own elements to Dialog use:
                                 {
                                     type: 'hbox',
                                     widths: ['100%'],
-                                    children: [ // таким чином можна формувати безліч елементів
+                                    children: [ // lots of elements can be formed this way
                                         {
                                             type: 'button',
                                             label: 'Some button'
@@ -154,17 +154,17 @@ For example adding image to `Image` dialog
                                 ...
                                 onClick: function (e) {
 
-                                    var helper = this.helper; // отримуємо доступ до `helper`
+                                    var helper = this.helper; // get access to `helper`
 
-                                    // getElement ( iD, tab ) - пошук елемента
+                                    // getElement ( iD, tab ) - element search
                                     helper
                                         .getElement('txtUrl', 'info')
                                         .setValue('http://.../../my-image.jpg');
 
-                                    // по кліку на кнопку добавляємо ссилку на забраження.
-                                    // зауважте те, що при зміні значення методом `setValue`
-                                    // елемент автоматично виконує тригер зміни.
-                                    // т.е. при зміні в даний момент зображення автоматично підгрузилось
+                                    // on button click, image link adding.
+                                    // notice, under value changing using `setValue` method
+                                    // element does trigger changes automatically.
+                                    // means under changing in this moment image loaded automatically
                                 }
                             },
                         ]
