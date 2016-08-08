@@ -174,7 +174,7 @@ For example adding image to `Image` dialog
         }
 ```
 
-![How add image](https://devixar.com/media/Ckeditor-facade.gif)
+![How add image](http://devixar.com/media/Ckeditor-facade.gif)
 
 You can also use `CkFacade` to get access:
 
